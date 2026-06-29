@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div id="protectedContent" style="display:none;">
     <header>
         <h1>DO it Fast NIGGA ( dont get caught)</h1>
         <input type="text" id="searchBar" onkeyup="filterPrograms()" placeholder="Search for programs...">
@@ -363,5 +363,16 @@ Step 4: Clustering:
             }
         }
             </script>
+</div>
+    <script>
+    const password = "nigga"; 
+    const userInput = prompt("Please enter the password:");
+    if (userInput === password) {
+        document.getElementById('protectedContent').style.display = 'block';
+    } else {
+        alert("Incorrect password. Access denied.");
+        window.location.href = "about:blank"; 
+    }
+</script>
 </body>
 </html>
