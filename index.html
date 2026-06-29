@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Science Programs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Machine Learning Programs</h1>
+        <input type="text" id="searchBar" onkeyup="filterPrograms()" placeholder="Search for programs...">
+    </header>
+
+    <main id="programList">
+        <details class="program-item"><summary>1. Exploratory Analysis of Data</summary><pre><code>import pandas as pd
+1. Exploratory Analysis of Data:
+import pandas,numpy and matplotlib.pyplot and seaborn as sns
+dataset = pd.read_csv("<dataset path>")
+print(dataset)
+counts, bin_edges, patches = plt.hist(dataset["Age"], bins = 10)
+plt.xlabel("Age")
+plt.ylabel("frequency")
+plt.title("histogram")
+plt.show()
+print(bin_edges, count)
+sns.boxplot(x=dataset["Age"])
+plt.xlabel("Age")
+plt.ylabel("Frequency")
+plt.title("Box Plot")
+plt.show()
+q1 = dataset["Age"].quantile(0.25)
+q2 = dataset["Age"].quantile(0.50)
+q3 = dataset["Age"].quantile(0.75)
+print(q1, q2, q3)
+IQR = q3 - q1
+lower_bound = q1 - (1.5 * IQR)
+upper_bound = q3 + (1.5 * IQR)
+print(lower_bound, upper_bound)
+outlayer = dataset((dataset["Age"] < lower_bound) | (dataset["Age"] < upper_bound))
+print(outlayer)
+#scatter layer
+plt.scatter(dataset["Age"], dataset["Estimated Salary"])
+plt.xlabel("Age")
+plt.ylabel("Estimated Salary")
+plt.title("Scatter Plot")
+plt.show()
+cor_mat = dataset.corr()
+print(corr_mat)</code></pre></details>
+        
+        <details class="program-item"><summary>2. Similarity and Dissimilarity measures</summary><pre><code>2. Similarity and Dissimilarity measures:
+import pandas, numpy, matplotlib.pyplot as pd, np, plt
+from scipy.spacial import distance
+dataset = pd.read_csv("<dataset path>")
+r1 = dataset.iloc[0].values
+r2 = dataset.iloc[1].values
+print(r1, r2)
+#Euclidean distance
+euclidean_distance = distance.Euclidean(r1, r2)
+print(euclidean_distance)
+#Manhattan distance
+manhattan_distance = distance.cityblock(r1, r2)
+print(manhattan_dist)
+#sim and binary attributes
+x = np.array([1, 1, 0, 1, 0])
+y = np.array([1, 0, 1, 0, 0])
+matches = np.sum(x == y)
+sim = matches/len(x)
+dist_sim = 1 - sim
+print(matches)
+print(sim)
+print(dist_sum)
+#nominal attributes
+x1 = np.array(['Green', 'India', 'Kerala'])
+y1 = np.array(['Blue', 'India', 'Tamil Nadu'])
+mis_matches = np.sum(x != y)
+dis_sim = sim_match/len(x)
+sim = 1 - dis_sim
+print(mis_matches, dis_sim, sim)
+#ordinal attribute
+x2 = np.array(['low', 'medium', 'high'])
+y2 = np.array(['medium', 'medium', 'high'])
+ordinal_map = {"low": 1, "medium": 2, "high": 3}
+x_num = np.array([ordinal_map[i] for i in x])
+y_num = np.array([ordinal_map[i] for I in y])
+print(x_num, y_num)
+x_norm = y_num/max(ordinal_map.values())
+y_norm = y_num/max(ordinal_map.values())
+euclidean_dist = distance.euclidean(x_norm, y_norm)
+print(x_norm, y_norm, euclidean_dist)</code></pre></details>
+
+        <details class="program-item"><summary>3. Data preprocessing techniques</summary><pre><code>3. Data preprocessing techniques:
+import pandas, numpy
+dataset = pd.read_csv(r"<dataset path>")
+print(dataset)
+from sklearn.impute import SimpleImputer
+x = dataset.iloc[:, :-1].values
+imp = SimpleImputer(missing_values = np.nan, strategy = "mean")
+imp.fit(x[:, 1:3])
+x[:, 1:3] = imp.transform(x[:, 1:3])
+print(x)
+from sklearn.preprocessing import labelEncoder
+b = labelEncoder()
+y1 = dataset.iloc[:, -1]. values
+y2 = b.fit_transform(y1)
+print(y2)
+x1 = dataset.iloc[:, 0].values
+x2 = b.fit_transform(x1)
+print(x2)
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+sc = fit(x[:, [1:3]])
+x[:, 1:3] = sc.transform(x[:, 1:3])
+from skleran.perprocessing
+import minmaxscaler
+min = minmaxscaler()
+min.fit(x2[:, [1:3]])
+print(x2)
+outlier = dataset[(dataset["Age"] < lb) | (dataset["Age"] > ub)]
+print(outlier)
+cor_mat = dataset.corr()
+print(cor_mat)
+q1 = dataset["Age"].quartile(0.25)
+q2 = dataset["Age"].quartile(0.50)
+q3 = dataset["Age"].quartile(0.75)
+IQR = q3 - q1
+lb = q1 - [IQR * 1.5]
+ub = q3 + [IQR * 1.5]
+print(IQR, lb, ub)</code></pre></details>
+
+        <details class="program-item"><summary>4. Apriori Algorithm</summary><pre><code>4. Apriori Algorithm:
+import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori
+dataset = [
+['milk', 'bread', 'butter'],
+['sugar', 'bread'],
+['milk', 'bread', 'sugar', 'butter'],
+['milk', 'bread'],
+['bread', 'butter'],
+['milk', 'bread', 'butter', 'sugar']
+]
+te = TransactionEncoder()
+te_arr = te.fit(dataset).transform(dataset)
+df = pd.DataFrame(te_arr, columns=te.columns_)
+print(df)
+frequent_itemsets = apriori(df, min_support=0.6, use_colnames=True)
+print("Frequent Itemsets:")
+print(frequent_itemsets)</code></pre></details>
+
+        <details class="program-item"><summary>5. Decision tree classifier</summary><pre><code>5. Decision tree classifier:
+import pandas, numpy, matplotlib.pyplot
+dataset = pd.read_csv("<dataset name>")
+print(dataset)
+x = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+print(x, y)
+from sklearn.model_selection import test_train_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+print(x_train, x_test, y_train, y_test)
+from sklearn.preprocessing import StandardScalar
+sc = StandardScalar()
+x_train = sc.fit_transform(x_train)
+y_train = sc.fit_transform(x_test)
+from sklearn.tree import DecisionTreeClassifier
+classifier = DecisionTreeClassifier(criterion='Entropy', random_state=42)
+classifier.fit(x_train, y_train)
+y_pred = classifier.predict(x_test)
+print(y_test)
+print(y_pred)
+from sklearn.metrics import confusion matrix, accuracy_score
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+accuracy_score(y_test, y_pred)
+print(classifier.predict(sc.transform([[37, 54000]])))</code></pre></details>
+
+        <details class="program-item"><summary>6. Naive bayes classification</summary><pre><code>6. Naive bayes classification:
+import pandas, numpy and matplotlib.pyplot
+dataset = pd.red_csv("<dataset name>")
+print(dataset)
+x = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+print(x, y)
+from sklearn.model_selection import test_train_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+print(x_train, x_test, y_train, y_test)
+from sklearn.preprocessing import StandardScalar
+sc = StandardScalar()
+x_train = sc.fit_transform(x_train)
+y_train = sc.fit_transform(x_test)
+from sklearn.naive_bayes import GaussianNB
+classifier = GaussianNB()
+classifier.fit(x_train, y_train)
+y_pred = classifier.predict(x_test)
+print(ytest, y_pred)
+from sklearn.metrics import confusion_matrix, accurac_score
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+accuracy_score(y_test, y_pred)
+print(classifier.predict(sc.transform([[37, 54000]])))</code></pre></details>
+
+        <details class="program-item"><summary>7. simple linear algorithm</summary><pre><code>7. simple linear algorithm: 
+import pandas, numpy, matplotlib.pyplot
+dataset = pd.read_csv("<dataset name>")
+print(dataset)
+x = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+print(x)
+print(y)
+from sklearn.model_selection import test_train_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+print(x_train, x_test, y_train, y_test)
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(x_train, y_train)
+y_pred = regressor.predict(x_test)
+print(y_test, y_pred)
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+print(mae, mse)
+plt.scatter(x_train, y_train, color = "red")
+plt.plot(x_train, regressor.predict(x_train, color = "Blue"))
+plt.xlabel("Years of experience")
+plt.ylabel("Salary")
+plt.title()
+plt.show()
+plt.scatter(x_test, y_test, color = "red")
+plt.plot(x_test, y_pred, color = "Blue"))
+plt.xlabel("Years of experience")
+plt.ylabel("Salary")
+plt.title(Test Set results)
+plt.show()
+print(regressor.predict([[10]]))
+print(regressor.intercept_)
+print(regressor.coef_[0])</code></pre></details>
+
+        <details class="program-item"><summary>8. K-Nearest neighbour classification</summary><pre><code>8. K-Nearest neighbour classification:
+import pandas, numpy, matplotlib.pyplot
+dataset = pd.read_csv("<dataset name>")
+print(dataset)
+x = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+print(x)
+print(y)
+from sklearn.model_selection import test_train_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+print(x_train, x_test, y_train, y_test)
+from sklearn.preprocessing import StandardScalar
+sc = StandardScalar()
+x_train = sc.fit_transform(x_train)
+y_train = sc.fit_transform(x_test)
+from sklearn.neighbour import KNeighbourClassifier
+classifier = KNeighbourClassifier(n_neighbour = 5, metric = minkowski, p = 2)
+classifier,fit(x_train, y_train)
+y_pred = classifier.predict(x_test)
+print(y_test)
+print(y_pred)
+from sklearn.metrics import confusion matrix, accuracy_score
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+accuracy_score(y_test, y_pred)
+print(classifier.predict(sc.transform([[37, 54000]])))</code></pre></details>
+
+        <details class="program-item"><summary>9. K-Means clustering algorithm</summary><pre><code>9. K-Means clustering algorithm:
+import pandas, numpy, matplotlib.pyplot
+dataset = pd.read_csv("<dataset name>")
+print(dataset)
+x = dataset.iloc[:, [3, 4]].values
+print(x)
+from sklearn.cluster import KMeans
+wcss = []
+for I in range(1, 11):
+k_means = KMeans(n_cluster = I, init = 'KMeans++', random_state = 42)
+y_kmeans = k_means.fit_predict(x)
+y_kmeans = k_means.fit_predict(x)
+print(y_kmeans)
+plt.scatter(x[y_kmeans == 0, 0], x[y_means == 0, 1], s = 100, color = 'red', label = 
+'cluster1')
+plt.scatter(x[y_kmeans == 1, 0], x[y_means == 1, 1], s = 100, color = 'red', label = 
+'cluster2')
+plt.scatter(x[y_kmeans == 2, 0], x[y_means == 2, 1], s = 100, color = 'red', label = 
+'cluster3')
+plt.scatter(x[y_kmeans == 3, 0], x[y_means == 3, 1], s = 100, color = 'red', label = 
+'cluster4')
+plt.title("cluster of customers")
+plt.xlabel("Annual Income")
+plt.ylabel("Spending Score")
+plt.show()</code></pre></details>
+
+        <details class="program-item"><summary>10. Hierarchical clustering algorithm</summary><pre><code>10. Hierarchical clustering algorithm:
+import pandas, numpy, matplotlib.pyplot
+dataset = pd.read_csv("<dataset name>")
+print(dataset)
+x = dataset.iloc[:, [3, 4]].values
+print(x)
+import scipy.cluster.hierarchy as sch
+dendrogram = sch.dendrogram(sch.linkage(x, method = "ward"))
+plt.title("Dendrogram")
+plt.xlabel("Customers")
+plt.ylabel("Distance")
+plt.show()
+from sklearn.cluster import AgglomerativeClustering
+hc = AgglomerativeClustering(n_clusters = 5, metric = 'euclidean', linkage = "ward")
+y_hc = hc.fit_predict(x)
+plt.scatter(x[y_kmeans == 0, 0], x[y_means == 0, 1], s = 100, color = 'red', label = 
+'cluster1')
+plt.scatter(x[y_kmeans == 1, 0], x[y_means == 1, 1], s = 100, color = 'blue', label = 
+'cluster2')
+plt.scatter(x[y_kmeans == 2, 0], x[y_means == 2, 1], s = 100, color = 'yellow', label = 
+'cluster3')
+plt.scatter(x[y_kmeans == 3, 0], x[y_means == 3, 1], s = 100, color = 'green', label = 
+'cluster4')
+plt.scatter(x[y_kmeans == 4, 0], x[y_means == 4, 1], s = 100, color = 'pink', label = 
+'cluster5')
+plt.title("visualizing clusters")
+plt.xlabel("Annual Income")
+plt.ylabel("Spending Score")
+plt.show()</code></pre></details>
+    </main>
+
+    <script>
+        function filterPrograms() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let items = document.getElementsByClassName('program-item');
+            for (let i = 0; i < items.length; i++) {
+                let title = items[i].getElementsByTagName("summary")[0].innerText.toLowerCase();
+                items[i].style.display = title.includes(input) ? "" : "none";
+            }
+        }
+        <details class="program-item"><summary>11. WEKA TOOLS</summary><pre><code>/* WEKA Tool - No Python Code Required */
+/* Steps to perform using WEKA Explorer: */
+
+Step 1: Open WEKA → Click "Explorer"
+Step 2: Pre-processing:
+   - Open File → Load dataset (.arff or .csv)
+   - Use "ReplaceMissingValues" filter for missing data
+   - Use "Normalize" or "Standardize" filter for scaling
+   - Use "Remove" filter to drop unwanted attributes
+
+Step 3: Classification:
+   - Click "Classify" tab
+   - Choose Classifier: trees > J48 (Decision Tree)
+     or bayes > NaiveBayes or lazy > IBk (KNN)
+   - Set test options: Cross-validation (10 folds)
+   - Click "Start" → View accuracy, confusion matrix
+
+Step 4: Clustering:
+   - Click "Cluster" tab
+   - Choose: clusterers > SimpleKMeans
+   - Set numClusters = 5, click "Start"
+   - View cluster assignments and centroids
+</code></pre></details>
+    </main>
+
+    <script>
+        function filterPrograms() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let items = document.getElementsByClassName('program-item');
+            for (let i = 0; i < items.length; i++) {
+                let title = items[i].getElementsByTagName("summary")[0].innerText.toLowerCase();
+                items[i].style.display = title.includes(input) ? "" : "none";
+            }
+        }
+            </script>
+</body>
+</html>
